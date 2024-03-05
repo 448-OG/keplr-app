@@ -24,6 +24,17 @@ export function message_to_tx(value: Uint8Array): Uint8Array;
 * @returns {Uint8Array}
 */
 export function auth_info_encode(pub_key: string, sequence: bigint, coin_denom: string, coin_amount: string, fee_gas: bigint, fee_payer: string, fee_granter: string): Uint8Array;
+/**
+* @param {string} pub_key
+* @param {bigint} sequence
+* @param {string} coin_denom
+* @param {string} coin_amount
+* @param {bigint} fee_gas
+* @param {string} fee_payer
+* @param {string} fee_granter
+* @returns {string}
+*/
+export function auth_info_encode_as_str(pub_key: string, sequence: bigint, coin_denom: string, coin_amount: string, fee_gas: bigint, fee_payer: string, fee_granter: string): string;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -32,6 +43,7 @@ export interface InitOutput {
   readonly pay_blobs: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
   readonly message_to_tx: (a: number, b: number, c: number) => void;
   readonly auth_info_encode: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number) => void;
+  readonly auth_info_encode_as_str: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
