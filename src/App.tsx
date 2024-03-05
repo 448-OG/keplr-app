@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { StargateClient} from '@cosmjs/stargate';
+import { StargateClient } from '@cosmjs/stargate';
 //import { pay_blobs, message_to_tx, auth_info_encode } from './pkg/';
 //import * as wasm from './pkg';
 
@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
         const offlineSigner = window.keplr.getOfflineSigner(chainId);
         const accounts = await offlineSigner.getAccounts();
-        console.log("ac 0:",accounts[0]);
+        console.log("ac 0:", accounts[0]);
 
         const signerAddress = accounts[0].address;
 
@@ -65,17 +65,27 @@ const App: React.FC = () => {
       const namespace = new Uint8Array([0x01, 0x02, 0x03, 0x04]);
       const data = new TextEncoder().encode("Hello, Celestia!");
       const shareVersion = 1;
-  
+
       console.log('Calling pay_blobs with:', { signerAddress, namespace, data, shareVersion });
 
       const blobResult = wasm.pay_blobs(signerAddress, namespace, data, shareVersion);
       console.log('Result from pay_blobs:', blobResult);
-  
+
       const txBodyBytes = wasm.message_to_tx(blobResult);
       console.log('Result from message_to_tx:', txBodyBytes);
-  
+
       const PublicKey = publicKeyBase64;
-      const authInfoBytes = wasm.auth_info_encode(
+      /*const authInfoBytes = wasm.auth_info_encode(
+        PublicKey,
+        BigInt(account.sequence),
+        "utia",
+        "1000",
+        BigInt(200000),
+        signerAddress,
+        signerAddress
+      );*/
+
+      const authInfoBytes = wasm.auth_info_encode_as_str(
         PublicKey,
         BigInt(account.sequence),
         "utia",
@@ -89,7 +99,7 @@ const App: React.FC = () => {
       console.error('Error during transaction preparation??:', error);
     }
   }
-  
+
   return (
     <div className="App">
       <header className="App-header">
