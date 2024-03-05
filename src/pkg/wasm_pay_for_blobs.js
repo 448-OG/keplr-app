@@ -46,6 +46,11 @@ function takeObject(idx) {
     dropObject(idx);
     return ret;
 }
+/**
+*/
+export function hello_rust() {
+    wasm.hello_rust();
+}
 
 let WASM_VECTOR_LEN = 0;
 

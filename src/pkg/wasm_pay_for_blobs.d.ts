@@ -1,6 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+*/
+export function hello_rust(): void;
+/**
 * @param {string} signer_address
 * @param {Uint8Array} vm_id_namespace
 * @param {Uint8Array} data
@@ -40,6 +43,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly hello_rust: () => void;
   readonly pay_blobs: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
   readonly message_to_tx: (a: number, b: number, c: number) => void;
   readonly auth_info_encode: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number) => void;

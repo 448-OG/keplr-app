@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
+export function hello_rust(): void;
 export function pay_blobs(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number): void;
 export function message_to_tx(a: number, b: number, c: number): void;
 export function auth_info_encode(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number): void;
