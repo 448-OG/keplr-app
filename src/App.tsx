@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { StargateClient} from '@cosmjs/stargate';
+//import { StargateClient } from '@cosmjs/stargate';
 //import { pay_blobs, message_to_tx, auth_info_encode } from './pkg/';
-//import * as wasm from './pkg';
+import init, { hello, adder } from "wasm-lib";
 
 declare global {
   interface Window {
@@ -13,7 +13,7 @@ declare global {
 const App: React.FC = () => {
   useEffect(() => {
     async function main() {
-      try {
+      /*try {
         const wasm = await import('./pkg').catch(console.error);
 
         if (!wasm) {
@@ -45,13 +45,17 @@ const App: React.FC = () => {
         await prepareAndSendTransaction(wasm, signerAddress, chainId, publicKeyBase64);
       } catch (error) {
         console.error("Initialization error:", error);
-      }
+      }*/
+      init().then(() => {
+        console.log(hello());
+        console.log(adder(1, 2));
+      })
     }
 
     main();
   }, []);
 
-  async function prepareAndSendTransaction(wasm: any, signerAddress: string, chainId: string, publicKeyBase64: string) {
+  /*async function prepareAndSendTransaction(wasm: any, signerAddress: string, chainId: string, publicKeyBase64: string) {
     try {
 
       const client = await StargateClient.connect("https://public-celestia-rpc.numia.xyz");
@@ -65,15 +69,15 @@ const App: React.FC = () => {
       const namespace = new Uint8Array([0x01, 0x02, 0x03, 0x04]);
       const data = new TextEncoder().encode("Hello, Celestia!");
       const shareVersion = 1;
-  
+
       console.log('Calling pay_blobs with:', { signerAddress, namespace, data, shareVersion });
 
       const blobResult = wasm.pay_blobs(signerAddress, namespace, data, shareVersion);
       console.log('Result from pay_blobs:', blobResult);
-  
+
       const txBodyBytes = wasm.message_to_tx(blobResult);
       console.log('Result from message_to_tx:', txBodyBytes);
-  
+
       const PublicKey = publicKeyBase64;
       const authInfoBytes = wasm.auth_info_encode(
         PublicKey,
@@ -88,8 +92,8 @@ const App: React.FC = () => {
     } catch (error) {
       console.error('Error during transaction preparation??:', error);
     }
-  }
-  
+  }*/
+
   return (
     <div className="App">
       <header className="App-header">
